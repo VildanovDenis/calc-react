@@ -1,0 +1,9 @@
+.calc-button {
+  min-width: 55px;
+  padding: 10px;
+  margin-bottom: 10px;
+  
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+}
