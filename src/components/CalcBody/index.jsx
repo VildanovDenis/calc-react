@@ -1,7 +1,7 @@
 import React from "react";
 
-import { InputCalc } from "./input";
-import { ButtonCalc } from "./button";
+import { InputCalc } from "./Input";
+import { ButtonCalc } from "./Button";
 import { calcNumButtons } from "./enum";
 import { calcOpTopButtons } from "./enum";
 import { calcOpRightButtons } from "./enum";
