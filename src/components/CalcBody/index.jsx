@@ -1,6 +1,7 @@
 import React from "react";
-import { InputCalc } from "./input/index";
-import { ButtonCalc } from "./button/index";
+
+import { InputCalc } from "./input";
+import { ButtonCalc } from "./button";
 import { calcNumButtons } from "./enum";
 import { calcOpTopButtons } from "./enum";
 import { calcOpRightButtons } from "./enum";
@@ -16,9 +17,13 @@ export class CalcBody extends React.Component {
       inputValue: "",
       operator: ""
     };
+
     this.onButtonClick = this.onButtonClick.bind(this);
   }
 
+  /**
+   * Обрабатывает клик на кнопке для того, чтобы определить какую операцию выполнять.
+   */
   onButtonClick(e) {
     switch (e.target.value) {
       case "0":
@@ -51,7 +56,7 @@ export class CalcBody extends React.Component {
         return;
       }
       case "C": {
-        if (this.state.previousInputValue != "") {
+        if (this.state.previousInputValue !== "") {
           this.setState({ inputValue: "" });
         }
         return;
@@ -80,7 +85,7 @@ export class CalcBody extends React.Component {
         return;
       }
       default: {
-        throw new Error();
+        throw new Error("Невозможно обработать операцию.");
       }
     }
   }
