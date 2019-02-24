@@ -22,13 +22,13 @@ export class CalcBody extends React.Component {
   onButtonClick(e) {
     switch (e.target.value) {
       case "0":
-      case "1": 
-      case "2": 
+      case "1":
+      case "2":
       case "3":
-      case "4": 
-      case "5": 
-      case "6": 
-      case "7": 
+      case "4":
+      case "5":
+      case "6":
+      case "7":
       case "8":
       case "9":
       case ".": {
@@ -36,23 +36,23 @@ export class CalcBody extends React.Component {
         this.setState({ inputValue });
         return;
       }
-      case "+": 
-      case "-": 
-      case "/": 
+      case "+":
+      case "-":
+      case "/":
       case "*": {
         const operator = e.target.value;
-        const {inputValue: previousInputValue} = this.state;
+        const { inputValue: previousInputValue } = this.state;
 
         this.setState({
           previousInputValue,
           inputValue: "",
-          operator,
+          operator
         });
         return;
       }
       case "C": {
         if (this.state.previousInputValue != "") {
-          this.setState({ inputValue: "", })
+          this.setState({ inputValue: "" });
         }
         return;
       }
@@ -60,58 +60,59 @@ export class CalcBody extends React.Component {
         this.setState({
           inputValue: "",
           previousInputValue: "",
-          operator: null,
+          operator: null
         });
         return;
       }
       case "=": {
         if (this.operator === null) {
-          this.setState({ inputValue: "0", })
+          this.setState({ inputValue: "0" });
         }
         this.setState({
-          inputValue: mathEval(this.state.previousInputValue, this.state.inputValue, this.state.operator),
+          inputValue: mathEval(
+            this.state.previousInputValue,
+            this.state.inputValue,
+            this.state.operator
+          ),
           previousInputValue: "",
-          operator: null,
+          operator: null
         });
-        return
+        return;
       }
       default: {
-        throw new Error;
+        throw new Error();
       }
-    };
+    }
   }
 
   render() {
     return (
-    <div className="calculator">
-        <InputCalc inputValue = {this.state.inputValue}/>
-      <div className="buttons-wrapper">
-        <div className="buttons-wrapper__top">
-          { calcOpTopButtons.map(i => {
-            return <ButtonCalc 
-                      key={i} 
-                      onClick = {this.onButtonClick} 
-                      value={i} />
-          })}
-        </div>
-        <div className="buttons-wrapper__left">
-          { calcNumButtons.map(i => {
-            return <ButtonCalc 
-                      key={i} 
-                      onClick = {this.onButtonClick} 
-                      value={i} />
-          })}
-        </div>
-        <div className="buttons-wrapper__right">
-          { calcOpRightButtons.map(i => {
-            return <ButtonCalc 
-                      key={i} 
-                      onClick = {this.onButtonClick} 
-                      value={i} />
-          })}
+      <div className="calculator">
+        <InputCalc inputValue={this.state.inputValue} />
+        <div className="buttons-wrapper">
+          <div className="buttons-wrapper__top">
+            {calcOpTopButtons.map(i => {
+              return (
+                <ButtonCalc key={i} onClick={this.onButtonClick} value={i} />
+              );
+            })}
+          </div>
+          <div className="buttons-wrapper__left">
+            {calcNumButtons.map(i => {
+              return (
+                <ButtonCalc key={i} onClick={this.onButtonClick} value={i} />
+              );
+            })}
+          </div>
+          <div className="buttons-wrapper__right">
+            {calcOpRightButtons.map(i => {
+              return (
+                <ButtonCalc key={i} onClick={this.onButtonClick} value={i} />
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
     );
   }
 }
